@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.1.2 (win64) Build 3605665 Fri Aug  5 22:53:37 MDT 2022
-| Date         : Sun Dec 11 21:02:59 2022
+| Date         : Sun Dec 11 22:20:12 2022
 | Host         : DESKTOP-OUSEAHU running 64-bit major release  (build 9200)
 | Command      : report_methodology -file Top_methodology_drc_routed.rpt -pb Top_methodology_drc_routed.pb -rpx Top_methodology_drc_routed.rpx
 | Design       : Top
@@ -23,25 +23,21 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 74
-+-----------+------------------+------------------------------------------------------------------+------------+
-| Rule      | Severity         | Description                                                      | Violations |
-+-----------+------------------+------------------------------------------------------------------+------------+
-| TIMING-6  | Critical Warning | No common primary clock between related clocks                   | 2          |
-| TIMING-17 | Critical Warning | Non-clocked sequential cell                                      | 70         |
-| TIMING-56 | Warning          | Missing logically or physically excluded clock groups constraint | 2          |
-+-----------+------------------+------------------------------------------------------------------+------------+
+             Violations found: 73
++-----------+------------------+----------------------------------------------------+------------+
+| Rule      | Severity         | Description                                        | Violations |
++-----------+------------------+----------------------------------------------------+------------+
+| TIMING-4  | Critical Warning | Invalid primary clock redefinition on a clock tree | 1          |
+| TIMING-17 | Critical Warning | Non-clocked sequential cell                        | 70         |
+| TIMING-27 | Critical Warning | Invalid primary clock on hierarchical pin          | 1          |
+| TIMING-18 | Warning          | Missing input or output delay                      | 1          |
++-----------+------------------+----------------------------------------------------+------------+
 
 2. REPORT DETAILS
 -----------------
-TIMING-6#1 Critical Warning
-No common primary clock between related clocks  
-The clocks clk_out1_AudioClock and clk_out1_AudioClock_1 are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks clk_out1_AudioClock] -to [get_clocks clk_out1_AudioClock_1]
-Related violations: <none>
-
-TIMING-6#2 Critical Warning
-No common primary clock between related clocks  
-The clocks clk_out1_AudioClock_1 and clk_out1_AudioClock are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks clk_out1_AudioClock_1] -to [get_clocks clk_out1_AudioClock]
+TIMING-4#1 Critical Warning
+Invalid primary clock redefinition on a clock tree  
+Invalid clock redefinition on a clock tree. The primary clock clock/inner/inst/clk_in1 is defined downstream of clock sys_clk_pin and overrides its insertion delay and/or waveform definition
 Related violations: <none>
 
 TIMING-17#1 Critical Warning
@@ -394,14 +390,14 @@ Non-clocked sequential cell
 The clock pin transmitter/regTX_reg[9]/C is not reached by a timing clock
 Related violations: <none>
 
-TIMING-56#1 Warning
-Missing logically or physically excluded clock groups constraint  
-Multiple clocks are user generated or auto-derived on the source pin clock/inner/inst/mmcm_adv_inst/CLKFBOUT but are not logically or physically exclusive with respect to one another. To have the static timing analysis match the behavior in hardware, there cannot be multiple clocks generated on the same pin and when such situation occurs, the clocks should be defined as physically or logically exclusive. The list of clocks generated on the source pin is: clkfbout_AudioClock, clkfbout_AudioClock_1
+TIMING-27#1 Critical Warning
+Invalid primary clock on hierarchical pin  
+A primary clock clock/inner/inst/clk_in1 is created on an inappropriate internal pin clock/inner/inst/clk_in1. It is not recommended to create a primary clock on a hierarchical pin when its driver pin has a fanout connected to multiple clock pins
 Related violations: <none>
 
-TIMING-56#2 Warning
-Missing logically or physically excluded clock groups constraint  
-Multiple clocks are user generated or auto-derived on the source pin clock/inner/inst/mmcm_adv_inst/CLKOUT0 but are not logically or physically exclusive with respect to one another. To have the static timing analysis match the behavior in hardware, there cannot be multiple clocks generated on the same pin and when such situation occurs, the clocks should be defined as physically or logically exclusive. The list of clocks generated on the source pin is: clk_out1_AudioClock, clk_out1_AudioClock_1
+TIMING-18#1 Warning
+Missing input or output delay  
+An input delay is missing on RESET relative to clock(s) sys_clk_pin
 Related violations: <none>
 
 

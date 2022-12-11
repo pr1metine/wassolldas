@@ -76,7 +76,6 @@ begin
                         currState <= STATE_WAIT_FOR_READY;
                     end if;
                 when STATE_WAIT_FOR_START =>
-                    address <= STD_LOGIC_VECTOR(to_unsigned(addressCounter, address'length));
                     if READY = '0' then
                         currState <= STATE_INCREMENT_ADDRESS;
                     else
@@ -88,6 +87,7 @@ begin
                     else
                         addressCounter := 0;
                     end if;
+                    address <= STD_LOGIC_VECTOR(to_unsigned(addressCounter, address'length));
                     currState <= STATE_WAIT_FOR_READY;
             end case;
 

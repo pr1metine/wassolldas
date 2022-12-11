@@ -90,7 +90,7 @@ begin
                  SCLK => wireSCLK );
 
     rom: ROMReader
-        port map( CLK => wireMCLK,
+        port map( CLK => CLK_100MHZ,
                  RESET => systemReset,
                  READY => wireREADY,
                  DOUT => wireDATA);
