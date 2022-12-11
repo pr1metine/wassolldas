@@ -31,8 +31,15 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
+-- Window length
 entity WSOLATransformer is
-    Port ( MCLK : in STD_LOGIC);
+    Generic (
+        WINDOW_LENGTH: INTEGER := 480; -- 100 hz
+        STANDARD_WINDOW_OFFSET: INTEGER := 240 -- two windowed segment overlap half of the
+    );
+    Port (
+        MCLK : in STD_LOGIC
+    );
 end WSOLATransformer;
 
 architecture Behavioral of WSOLATransformer is
