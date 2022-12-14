@@ -21,6 +21,7 @@
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.numeric_std.ALL;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -49,55 +50,94 @@ entity WSOLATransformer is
 end WSOLATransformer;
 
 architecture Behavioral of WSOLATransformer is
-    type State is (STATE_RESET, STATE_INITIAL_DIN_LOADING, STATE_INITIAL_STORING, STATE_DIN_LOADING, STATE_STORING, STATE_WAITING_FOR_READ, STATE_BEING_READ);
-    signal currState: State := STATE_RESET;
-    signal currYStartPosition: INTEGER := 0;
-    --    signal regDIN: STD_LOGIC_VECTOR(WIDTH - 1 downto 0);
+    component WSOLARAM is
+        Port (
+            clka : IN STD_LOGIC;
+            wea : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+            addra : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+            dina : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+            douta : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+            clkb : IN STD_LOGIC;
+            web : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+            addrb : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+            dinb : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+            doutb : OUT STD_LOGIC_VECTOR(15 DOWNTO 0)
+        );
+    end component;
 
-    --    signal x: STD_LOGIC_VECTOR(2 * WINDOW_LENGTH * WIDTH - 1 downto 0);
-    --    signal y: STD_LOGIC_VECTOR(2 * WINDOW_LENGTH * WIDTH - 1 downto 0);
+    type ReadState is (STATE_RESET, STATE_WAIT_FOR_INCREMENT, STATE_INCREMENT);
+    signal currReadState: ReadState := STATE_RESET;
+    signal writeEnable: STD_LOGIC_VECTOR(0 downto 0) := (others => '0');
+    signal addressA: unsigned(9 downto 0) := (others => '0');
+    signal dinA: STD_LOGIC_VECTOR(WIDTH - 1 downto 0) := (others => '0');
+    signal doutA: STD_LOGIC_VECTOR(WIDTH - 1 downto 0);
+
+    type WriteState is (STATE_RESET, STATE_ADD, STATE_OVERWRITE, STATE_WAIT_FOR_NEXT_LOAD);
+    signal currWriteState: WriteState := STATE_RESET;
+    signal addressB: unsigned(9 downto 0) := (others => '0');
+    signal doutB: STD_LOGIC_VECTOR(WIDTH - 1 downto 0);
 begin
+    ram: WSOLARAM
+        port map (
+            clka => CLK,
+            wea => writeEnable,
+            addra => std_logic_vector(addressA),
+            dina => dinA,
+            douta => doutA,
+            clkb => CLK,
+            web => (0 downto 0 => '0'),
+            addrb => std_logic_vector(addressB),
+            dinb => (WIDTH - 1 downto 0 => '0'),
+            doutb => doutB
+        );
 
-    process (CLK)
-        variable xPosition: INTEGER := 0;
+    read_process: process (CLK)
     begin
         if rising_edge(CLK) then
-            case currState is
+            case currReadState is
                 when STATE_RESET =>
-                    --                    x <= (others => '0');
-                    --                    y <= (others => '0');
-                    xPosition := 0;
-                    currYStartPosition <= 0;
-                    DIN_INCREMENT <= '0';
-                --                    currState <= STATE_INITIAL_DIN_LOADING;
-                    currState <= STATE_WAITING_FOR_READ;
-                when STATE_INITIAL_DIN_LOADING =>
-                    --                    regDIN <= DIN;
-                    DIN_INCREMENT <= '0';
-                when STATE_INITIAL_STORING =>
-                when STATE_DIN_LOADING =>
-                when STATE_STORING =>
-                when STATE_WAITING_FOR_READ =>
+                    addressA <= (others => '0');
+                    currReadState <= STATE_WAIT_FOR_INCREMENT;
+                when STATE_WAIT_FOR_INCREMENT =>
                     if TX_INCREMENT = '1' then
-                        currState <= STATE_BEING_READ;
-                        DIN_INCREMENT <= '1';
+                        currReadState <= STATE_INCREMENT;
+                        addressA <= addressA + 1;
                     else
-                        currState <= STATE_WAITING_FOR_READ;
+                        currReadState <= STATE_WAIT_FOR_INCREMENT;
                     end if;
-                when STATE_BEING_READ =>
-                    DIN_INCREMENT <= '0';
+                when STATE_INCREMENT =>
+                    
                     if TX_INCREMENT = '0' then
-                        currState <= STATE_WAITING_FOR_READ;
+                        currReadState <= STATE_WAIT_FOR_INCREMENT;
                     else
-                        currState <= STATE_BEING_READ;
+                        currReadState <= STATE_INCREMENT;
                     end if;
             end case;
 
             if RESET = '1' then
-                currState <= STATE_RESET;
+                currReadState <= STATE_RESET;
             end if;
         end if;
     end process;
 
-    TX <= DIN;
+    write_process: process (CLK)
+        variable currWindowLength: INTEGER := 0;
+    begin
+        if rising_edge(CLK) then
+            case currWriteState is
+                when STATE_RESET =>
+                    addressB <= (others => '0');
+                    currWindowLength := 0;
+                    currWriteState <= STATE_OVERWRITE;
+                when STATE_ADD =>
+                when STATE_OVERWRITE =>
+                when STATE_WAIT_FOR_NEXT_LOAD =>
+            end case;
+            if RESET = '1' then
+                currWriteState <= STATE_RESET;
+            end if;
+        end if;
+    end process write_process;
+
+    TX <= doutB;
 end Behavioral;

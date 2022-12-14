@@ -108,6 +108,9 @@ set_property used_in_implementation false [get_files -all c:/Users/derth/project
 set_property used_in_implementation false [get_files -all c:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.gen/sources_1/ip/AudioClock/AudioClock.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.gen/sources_1/ip/AudioClock/AudioClock_ooc.xdc]
 
+read_ip -quiet C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/ip/WSOLARAM/WSOLARAM.xci
+set_property used_in_implementation false [get_files -all c:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.gen/sources_1/ip/WSOLARAM/WSOLARAM_ooc.xdc]
+
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the

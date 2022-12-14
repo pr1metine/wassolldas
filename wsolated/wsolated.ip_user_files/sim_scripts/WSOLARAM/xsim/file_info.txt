@@ -1,0 +1,2 @@
+WSOLARAM_sim_netlist.vhdl,vhdl,xil_defaultlib,../../../../wsolated.gen/sources_1/ip/WSOLARAM/WSOLARAM_sim_netlist.vhdl,
+glbl.v,Verilog,xil_defaultlib,glbl.v

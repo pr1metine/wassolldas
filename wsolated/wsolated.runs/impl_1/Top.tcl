@@ -144,6 +144,7 @@ OPTRACE "add files" START { }
   add_files -quiet C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.runs/synth_1/Top.dcp
   read_ip -quiet C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/ip/PCMROM/PCMROM.xci
   read_ip -quiet C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/ip/AudioClock/AudioClock.xci
+  read_ip -quiet C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/ip/WSOLARAM/WSOLARAM.xci
 OPTRACE "read constraints: implementation" START { }
   read_xdc C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/constrs_1/imports/new/Arty-A7-35-Master.xdc
 OPTRACE "read constraints: implementation" END { }
