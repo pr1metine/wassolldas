@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="100,166.667 ns"></ZoomStartTime>
-      <ZoomEndTime time="101,166.667 ns"></ZoomEndTime>
-      <Cursor1Time time="100,460.330 ns"></Cursor1Time>
+      <ZoomStartTime time="0.000000 us"></ZoomStartTime>
+      <ZoomEndTime time="170.480001 us"></ZoomEndTime>
+      <Cursor1Time time="63.246779 us"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="266"></NameColumnWidth>
-      <ValueColumnWidth column_width="118"></ValueColumnWidth>
+      <ValueColumnWidth column_width="110"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="9" />
+   <WVObjectSize size="17" />
    <wvobject fp_name="/TopTB/CLK_100MHZ" type="logic">
       <obj_property name="ElementShortName">CLK_100MHZ</obj_property>
       <obj_property name="ObjectShortName">CLK_100MHZ</obj_property>
@@ -48,12 +48,44 @@
       <obj_property name="ElementShortName">LOCKED</obj_property>
       <obj_property name="ObjectShortName">LOCKED</obj_property>
    </wvobject>
-   <wvobject fp_name="/TopTB/dut/rom/currState" type="other">
-      <obj_property name="ElementShortName">currState</obj_property>
-      <obj_property name="ObjectShortName">currState</obj_property>
-   </wvobject>
    <wvobject fp_name="/TopTB/dut/transmitter/currState" type="other">
       <obj_property name="ElementShortName">currState</obj_property>
       <obj_property name="ObjectShortName">currState</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TopTB/dut/rom/INCREMENT_ENABLE" type="array">
+      <obj_property name="ElementShortName">INCREMENT_ENABLE[3:0]</obj_property>
+      <obj_property name="ObjectShortName">INCREMENT_ENABLE[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TopTB/dut/rom/DOUT" type="array">
+      <obj_property name="ElementShortName">DOUT[15:0]</obj_property>
+      <obj_property name="ObjectShortName">DOUT[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TopTB/dut/rom/address" type="array">
+      <obj_property name="ElementShortName">address[16:0]</obj_property>
+      <obj_property name="ObjectShortName">address[16:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TopTB/RESET" type="logic">
+      <obj_property name="ElementShortName">RESET</obj_property>
+      <obj_property name="ObjectShortName">RESET</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TopTB/dut/transformer/DIN_INCREMENT" type="logic">
+      <obj_property name="ElementShortName">DIN_INCREMENT</obj_property>
+      <obj_property name="ObjectShortName">DIN_INCREMENT</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TopTB/dut/transformer/TX_INCREMENT" type="logic">
+      <obj_property name="ElementShortName">TX_INCREMENT</obj_property>
+      <obj_property name="ObjectShortName">TX_INCREMENT</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TopTB/dut/rom/rom/addra" type="array">
+      <obj_property name="ElementShortName">addra[16:0]</obj_property>
+      <obj_property name="ObjectShortName">addra[16:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TopTB/dut/rom/rom/douta" type="array">
+      <obj_property name="ElementShortName">douta[15:0]</obj_property>
+      <obj_property name="ObjectShortName">douta[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TopTB/dut/rom/rom/clka" type="logic">
+      <obj_property name="ElementShortName">clka</obj_property>
+      <obj_property name="ObjectShortName">clka</obj_property>
    </wvobject>
 </wave_config>

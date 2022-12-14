@@ -2,12 +2,12 @@
 # Vivado v2022.1.2 (64-bit)
 # SW Build 3605665 on Fri Aug  5 22:53:37 MDT 2022
 # IP Build 3603185 on Sat Aug  6 04:07:44 MDT 2022
-# Start of session at: Sun Dec 11 22:17:51 2022
-# Process ID: 1036
-# Current directory: C:/Users/derth/projects/fpga/wsolated/wsolated/wsolated.runs/synth_1
+# Start of session at: Wed Dec 14 11:13:26 2022
+# Process ID: 11436
+# Current directory: C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.runs/synth_1
 # Command line: vivado.exe -log Top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Top.tcl
-# Log file: C:/Users/derth/projects/fpga/wsolated/wsolated/wsolated.runs/synth_1/Top.vds
-# Journal file: C:/Users/derth/projects/fpga/wsolated/wsolated/wsolated.runs/synth_1\vivado.jou
+# Log file: C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.runs/synth_1/Top.vds
+# Journal file: C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.runs/synth_1\vivado.jou
 # Running On: DESKTOP-OUSEAHU, OS: Windows, CPU Frequency: 3593 MHz, CPU Physical cores: 12, Host memory: 17116 MB
 #-----------------------------------------------------------
 source Top.tcl -notrace

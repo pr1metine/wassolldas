@@ -33,7 +33,9 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity Top is
     Generic ( WIDTH : INTEGER := 16;
-            RATIO : INTEGER := 8);
+            RATIO : INTEGER := 8;
+            WINDOW_LENGTH : INTEGER := 480;
+            STANDARD_WINDOW_OFFSET : INTEGER := 240 );
     Port ( CLK_100MHZ : in STD_LOGIC;
          RESET : in STD_LOGIC;
          MCLK : out STD_LOGIC;
@@ -57,11 +59,28 @@ architecture Behavioral of Top is
              SCLK : out STD_LOGIC );
     end component;
     component ROMReader is
-        Generic ( ROM_SIZE: INTEGER := 100000 );
+        Generic ( ROM_SIZE: INTEGER := 100000;
+                BURST_LENGTH: INTEGER := 480;
+                WIDTH: INTEGER := 16 );
         Port ( CLK : in STD_LOGIC;
              RESET : in STD_LOGIC;
-             READY : in STD_LOGIC;
-             DOUT : out STD_LOGIC_VECTOR(15 downto 0));
+             INCREMENT_ENABLE : in STD_LOGIC_VECTOR(3 downto 0);
+             DOUT : out STD_LOGIC_VECTOR(WIDTH - 1 downto 0));
+    end component;
+    component WSOLATransformer is
+        Generic (
+            WIDTH: INTEGER := 16;
+            WINDOW_LENGTH: INTEGER := 480; -- 100 hz-
+            STANDARD_WINDOW_OFFSET: INTEGER := 240 -- two windowed segment overlap half the time
+        );
+        Port (
+            CLK : in STD_LOGIC;
+            RESET: in STD_LOGIC;
+            DIN_INCREMENT: out STD_LOGIC;
+            TX_INCREMENT: in STD_LOGIC;
+            DIN: in STD_LOGIC_VECTOR(WIDTH - 1 downto 0);
+            TX: out STD_LOGIC_VECTOR(WIDTH - 1 downto 0)
+        );
     end component;
     component I2STransmitter is
         Generic ( WIDTH: INTEGER := 16 );
@@ -75,9 +94,11 @@ architecture Behavioral of Top is
     end component;
 
     signal systemReset: STD_LOGIC := '1';
-    signal wireREADY: STD_LOGIC := '0';
+    signal dinIncrement: STD_LOGIC := '0';
+    signal txIncrement: STD_LOGIC := '0';
     signal wireSCLK: STD_LOGIC := '0';
-    signal wireDATA: STD_LOGIC_VECTOR(WIDTH - 1 downto 0) := (others => '0');
+    signal wireDIN: STD_LOGIC_VECTOR(WIDTH - 1 downto 0) := (others => '0');
+    signal wireTX: STD_LOGIC_VECTOR(WIDTH - 1 downto 0) := (others => '0');
     signal wireMCLK: STD_LOGIC := '0';
     signal locked: STD_LOGIC := '0';
 begin
@@ -90,17 +111,31 @@ begin
                  SCLK => wireSCLK );
 
     rom: ROMReader
+        generic map( ROM_SIZE => 100000,
+                    BURST_LENGTH => WINDOW_LENGTH,
+                    WIDTH => WIDTH)
         port map( CLK => CLK_100MHZ,
                  RESET => systemReset,
-                 READY => wireREADY,
-                 DOUT => wireDATA);
+                 INCREMENT_ENABLE => dinIncrement & dinIncrement & dinIncrement & dinIncrement, -- TODO: change
+                 DOUT => wireDIN);
+
+    transformer: WSOLATransformer
+        generic map ( WIDTH => WIDTH,
+                    WINDOW_LENGTH => WINDOW_LENGTH,
+                    STANDARD_WINDOW_OFFSET => STANDARD_WINDOW_OFFSET )
+        port map ( CLK => CLK_100MHZ,
+                 RESET => systemReset,
+                 DIN_INCREMENT => dinIncrement,
+                 TX_INCREMENT => txIncrement,
+                 DIN => wireDIN,
+                 TX => wireTX );
 
     transmitter: I2STransmitter
         generic map ( WIDTH => WIDTH )
         port map ( CLK => wireSCLK,
                  RESET => systemReset,
-                 READY => wireREADY,
-                 TX => wireDATA & wireDATA,
+                 READY => txIncrement,
+                 TX => wireTX & wireTX,
                  LRCK => LRCK,
                  SCLK => SCLK,
                  SDIN => SDIN);

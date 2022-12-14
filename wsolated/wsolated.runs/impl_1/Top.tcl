@@ -17,7 +17,7 @@ proc create_report { reportName command } {
   }
 }
 namespace eval ::optrace {
-  variable script "C:/Users/derth/projects/fpga/wsolated/wsolated/wsolated.runs/impl_1/Top.tcl"
+  variable script "C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.runs/impl_1/Top.tcl"
   variable category "vivado_impl"
 }
 
@@ -115,9 +115,6 @@ proc step_failed { step } {
 OPTRACE "impl_1" END { }
 }
 
-set_msg_config -id {Common 17-41} -limit 10000000
-set_msg_config -id {Synth 8-256} -limit 10000
-set_msg_config -id {Synth 8-638} -limit 10000
 set_msg_config  -id {[BD 41-1306]}  -suppress 
 set_msg_config  -id {[BD 41-1271]}  -suppress 
 
@@ -127,10 +124,7 @@ start_step init_design
 set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
-  set_param checkpoint.writeSynthRtdsInDcp 1
   set_param chipscope.maxJobs 3
-  set_param synth.incrementalSynthesisCache C:/Users/derth/projects/fpga/wsolated/wsolated/.Xil/Vivado-29984-DESKTOP-OUSEAHU/incrSyn
-  set_param xicom.use_bs_reader 1
   set_param ced.repoPaths C:/Users/derth/AppData/Roaming/Xilinx/Vivado/2022.1.2/xhub/ced_store/Vivado_example_project
 OPTRACE "create in-memory project" START { }
   create_project -in_memory -part xc7a35ticsg324-1L
@@ -138,20 +132,20 @@ OPTRACE "create in-memory project" START { }
   set_param project.singleFileAddWarning.threshold 0
 OPTRACE "create in-memory project" END { }
 OPTRACE "set parameters" START { }
-  set_property webtalk.parent_dir C:/Users/derth/projects/fpga/wsolated/wsolated/wsolated.cache/wt [current_project]
-  set_property parent.project_path C:/Users/derth/projects/fpga/wsolated/wsolated/wsolated.xpr [current_project]
+  set_property webtalk.parent_dir C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.cache/wt [current_project]
+  set_property parent.project_path C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.xpr [current_project]
   set_property ip_repo_paths C:/Users/derth/projects/fpga/vivado-library [current_project]
   update_ip_catalog
-  set_property ip_output_repo C:/Users/derth/projects/fpga/wsolated/wsolated/wsolated.cache/ip [current_project]
+  set_property ip_output_repo C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
   set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]
 OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
-  add_files -quiet C:/Users/derth/projects/fpga/wsolated/wsolated/wsolated.runs/synth_1/Top.dcp
-  read_ip -quiet C:/Users/derth/projects/fpga/wsolated/wsolated/wsolated.srcs/sources_1/ip/PCMROM/PCMROM.xci
-  read_ip -quiet C:/Users/derth/projects/fpga/wsolated/wsolated/wsolated.srcs/sources_1/ip/AudioClock/AudioClock.xci
+  add_files -quiet C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.runs/synth_1/Top.dcp
+  read_ip -quiet C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/ip/PCMROM/PCMROM.xci
+  read_ip -quiet C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/ip/AudioClock/AudioClock.xci
 OPTRACE "read constraints: implementation" START { }
-  read_xdc C:/Users/derth/projects/fpga/wsolated/wsolated/wsolated.srcs/constrs_1/imports/new/Arty-A7-35-Master.xdc
+  read_xdc C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/constrs_1/imports/new/Arty-A7-35-Master.xdc
 OPTRACE "read constraints: implementation" END { }
 OPTRACE "add files" END { }
 OPTRACE "link_design" START { }

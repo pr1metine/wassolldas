@@ -41,22 +41,21 @@ entity WSOLATransformer is
     Port (
         CLK : in STD_LOGIC;
         RESET: in STD_LOGIC;
-        DIN_READY: out STD_LOGIC;
-        TX_READY: in STD_LOGIC;
+        DIN_INCREMENT: out STD_LOGIC;
+        TX_INCREMENT: in STD_LOGIC;
         DIN: in STD_LOGIC_VECTOR(WIDTH - 1 downto 0);
         TX: out STD_LOGIC_VECTOR(WIDTH - 1 downto 0)
     );
 end WSOLATransformer;
 
 architecture Behavioral of WSOLATransformer is
-    signal x: STD_LOGIC_VECTOR(2 * WINDOW_LENGTH * WIDTH - 1 downto 0);
-    signal y: STD_LOGIC_VECTOR(2 * WINDOW_LENGTH * WIDTH - 1 downto 0);
-    
     type State is (STATE_RESET, STATE_INITIAL_DIN_LOADING, STATE_INITIAL_STORING, STATE_DIN_LOADING, STATE_STORING, STATE_WAITING_FOR_READ, STATE_BEING_READ);
     signal currState: State := STATE_RESET;
     signal currYStartPosition: INTEGER := 0;
-    
-    signal regDIN: STD_LOGIC_VECTOR(WIDTH - 1 downto 0);
+    --    signal regDIN: STD_LOGIC_VECTOR(WIDTH - 1 downto 0);
+
+    --    signal x: STD_LOGIC_VECTOR(2 * WINDOW_LENGTH * WIDTH - 1 downto 0);
+    --    signal y: STD_LOGIC_VECTOR(2 * WINDOW_LENGTH * WIDTH - 1 downto 0);
 begin
 
     process (CLK)
@@ -65,22 +64,40 @@ begin
         if rising_edge(CLK) then
             case currState is
                 when STATE_RESET =>
-                    x <= (others => '0');
-                    y <= (others => '0');
+                    --                    x <= (others => '0');
+                    --                    y <= (others => '0');
                     xPosition := 0;
                     currYStartPosition <= 0;
-                    currState <= STATE_INITIAL_DIN_LOADING;
+                    DIN_INCREMENT <= '0';
+                --                    currState <= STATE_INITIAL_DIN_LOADING;
+                    currState <= STATE_WAITING_FOR_READ;
                 when STATE_INITIAL_DIN_LOADING =>
-                    regDIN <= DIN;
-                    DIN_READY <= '0';
-                    
+                    --                    regDIN <= DIN;
+                    DIN_INCREMENT <= '0';
                 when STATE_INITIAL_STORING =>
                 when STATE_DIN_LOADING =>
                 when STATE_STORING =>
                 when STATE_WAITING_FOR_READ =>
+                    if TX_INCREMENT = '1' then
+                        currState <= STATE_BEING_READ;
+                        DIN_INCREMENT <= '1';
+                    else
+                        currState <= STATE_WAITING_FOR_READ;
+                    end if;
                 when STATE_BEING_READ =>
+                    DIN_INCREMENT <= '0';
+                    if TX_INCREMENT = '0' then
+                        currState <= STATE_WAITING_FOR_READ;
+                    else
+                        currState <= STATE_BEING_READ;
+                    end if;
             end case;
+
+            if RESET = '1' then
+                currState <= STATE_RESET;
+            end if;
         end if;
     end process;
 
+    TX <= DIN;
 end Behavioral;

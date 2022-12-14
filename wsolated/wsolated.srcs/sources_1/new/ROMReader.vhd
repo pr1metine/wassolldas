@@ -33,11 +33,13 @@ use IEEE.numeric_std.ALL;
 --use UNISIM.VComponents.all;
 
 entity ROMReader is
-    Generic ( ROM_SIZE: INTEGER := 100000 );
+    Generic ( ROM_SIZE: INTEGER := 100000;
+            BURST_LENGTH: INTEGER := 480;
+            WIDTH: INTEGER := 16 );
     Port ( CLK : in STD_LOGIC;
          RESET : in STD_LOGIC;
-         READY : in STD_LOGIC;
-         DOUT : out STD_LOGIC_VECTOR(15 downto 0));
+         INCREMENT_ENABLE : in STD_LOGIC_VECTOR(3 downto 0); -- may extract increment enable width to a generic parameter
+         DOUT : out STD_LOGIC_VECTOR(WIDTH - 1 downto 0));
 end ROMReader;
 
 architecture Behavioral of ROMReader is
@@ -45,14 +47,11 @@ architecture Behavioral of ROMReader is
         Port (
             clka : IN STD_LOGIC;
             addra : IN STD_LOGIC_VECTOR(16 DOWNTO 0);
-            douta : OUT STD_LOGIC_VECTOR(15 DOWNTO 0)
+            douta : OUT STD_LOGIC_VECTOR(WIDTH - 1 DOWNTO 0)
         );
     end component;
 
-    type State is (STATE_RESET, STATE_WAIT_FOR_READY, STATE_INCREMENT_ADDRESS, STATE_WAIT_FOR_START);
-
-    signal currState: State := STATE_RESET;
-    signal address: STD_LOGIC_VECTOR(16 downto 0) := (others => '0');
+    signal address: std_logic_vector(16 downto 0) := (others => '0');
 begin
     rom: PCMROM
         port map(
@@ -62,37 +61,24 @@ begin
         );
 
     process (CLK)
+        variable currBurstLength: INTEGER := 0;
         variable addressCounter: INTEGER := 0;
     begin
         if rising_edge(CLK) then
-            case currState is
-                when STATE_RESET =>
-                    addressCounter := 0;
-                    currState <= STATE_WAIT_FOR_READY;
-                when STATE_WAIT_FOR_READY =>
-                    if READY = '1' then
-                        currState <= STATE_WAIT_FOR_START;
-                    else
-                        currState <= STATE_WAIT_FOR_READY;
-                    end if;
-                when STATE_WAIT_FOR_START =>
-                    if READY = '0' then
-                        currState <= STATE_INCREMENT_ADDRESS;
-                    else
-                        currState <= STATE_WAIT_FOR_START;
-                    end if;
-                when STATE_INCREMENT_ADDRESS =>
-                    if addressCounter < ROM_SIZE - 1 then
-                        addressCounter := addressCounter + 1;
-                    else
-                        addressCounter := 0;
-                    end if;
-                    address <= STD_LOGIC_VECTOR(to_unsigned(addressCounter, address'length));
-                    currState <= STATE_WAIT_FOR_READY;
-            end case;
-
+            if INCREMENT_ENABLE /= (3 downto 0 => '0') then
+                currBurstLength := currBurstLength + 1;
+                if currBurstLength >= BURST_LENGTH then
+                    currBurstLength := 0;
+--                    address <= address + 1; -- TODO: adapt
+                end if;
+                addressCounter := (addressCounter + 1) mod ROM_SIZE;
+                address <= std_logic_vector(to_unsigned(addressCounter, 17));
+            end if;
+            
             if RESET = '1' then
-                currState <= STATE_RESET;
+                currBurstLength := 0;
+                addressCounter := 0;
+                address <= (others => '0');
             end if;
         end if;
     end process;

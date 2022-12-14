@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="AudioClock_synth_1" LaunchPart="xc7a35ticsg324-1L" LaunchTime="1670784674">
   <File Type="PA-TCL" Name="AudioClock.tcl"/>
-  <File Type="RDS-PROPCONSTRS" Name="AudioClock_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="AudioClock_reports.tcl"/>
   <File Type="RDS-RDS" Name="AudioClock.vds"/>
   <File Type="RDS-UTIL" Name="AudioClock_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="AudioClock_utilization_synth.pb"/>
   <File Type="RDS-DCP" Name="AudioClock.dcp"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="AudioClock_timing_summary_synth.rpt"/>
-  <File Type="VDS-TIMING-PB" Name="AudioClock_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="BlockSrcs" RelSrcDir="$PSRCDIR/AudioClock">
     <File Path="$PSRCDIR/sources_1/ip/AudioClock/AudioClock.xci">
       <FileInfo>

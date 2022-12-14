@@ -6,6 +6,7 @@ vhdl xil_defaultlib  \
 "../../../../wsolated.srcs/sources_1/new/I2STransmitter.vhd" \
 "../../../../wsolated.srcs/sources_1/new/ROMReader.vhd" \
 "../../../../wsolated.srcs/sources_1/new/Top.vhd" \
+"../../../../wsolated.srcs/sources_1/new/WSOLATransformer.vhd" \
 "../../../../wsolated.srcs/sim_1/new/TopTB.vhd" \
 
 # Do not sort compile order
