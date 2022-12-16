@@ -8,7 +8,7 @@ import sys
 
 dirname = dirname(__file__)
 input_wav = join("data", "mario.wav") if len(sys.argv) <= 1 else sys.argv[1]
-offset = 48000 if len(sys.argv) <= 2 else int(sys.argv[2])
+offset = 48000 + 13620 if len(sys.argv) <= 2 else int(sys.argv[2])
 input_wav_name = basename(input_wav)
 
 # %%

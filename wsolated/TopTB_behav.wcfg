@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0.000000 us"></ZoomStartTime>
-      <ZoomEndTime time="170.480001 us"></ZoomEndTime>
-      <Cursor1Time time="63.246779 us"></Cursor1Time>
+      <ZoomStartTime time="7,351.936 ns"></ZoomStartTime>
+      <ZoomEndTime time="7,572.108 ns"></ZoomEndTime>
+      <Cursor1Time time="1,001,000.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="266"></NameColumnWidth>
-      <ValueColumnWidth column_width="110"></ValueColumnWidth>
+      <ValueColumnWidth column_width="106"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="17" />
+   <WVObjectSize size="20" />
    <wvobject fp_name="/TopTB/CLK_100MHZ" type="logic">
       <obj_property name="ElementShortName">CLK_100MHZ</obj_property>
       <obj_property name="ObjectShortName">CLK_100MHZ</obj_property>
@@ -60,10 +60,6 @@
       <obj_property name="ElementShortName">DOUT[15:0]</obj_property>
       <obj_property name="ObjectShortName">DOUT[15:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/TopTB/dut/rom/address" type="array">
-      <obj_property name="ElementShortName">address[16:0]</obj_property>
-      <obj_property name="ObjectShortName">address[16:0]</obj_property>
-   </wvobject>
    <wvobject fp_name="/TopTB/RESET" type="logic">
       <obj_property name="ElementShortName">RESET</obj_property>
       <obj_property name="ObjectShortName">RESET</obj_property>
@@ -84,8 +80,24 @@
       <obj_property name="ElementShortName">douta[15:0]</obj_property>
       <obj_property name="ObjectShortName">douta[15:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/TopTB/dut/rom/rom/clka" type="logic">
-      <obj_property name="ElementShortName">clka</obj_property>
-      <obj_property name="ObjectShortName">clka</obj_property>
+   <wvobject fp_name="/TopTB/dut/transformer/currWriteState" type="other">
+      <obj_property name="ElementShortName">currWriteState</obj_property>
+      <obj_property name="ObjectShortName">currWriteState</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TopTB/dut/transformer/currReadState" type="other">
+      <obj_property name="ElementShortName">currReadState</obj_property>
+      <obj_property name="ObjectShortName">currReadState</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TopTB/dut/transformer/addressB" type="array">
+      <obj_property name="ElementShortName">addressB[9:0]</obj_property>
+      <obj_property name="ObjectShortName">addressB[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TopTB/dut/transformer/addressA" type="array">
+      <obj_property name="ElementShortName">addressA[9:0]</obj_property>
+      <obj_property name="ObjectShortName">addressA[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TopTB/dut/rom/address" type="array">
+      <obj_property name="ElementShortName">address[16:0]</obj_property>
+      <obj_property name="ObjectShortName">address[16:0]</obj_property>
    </wvobject>
 </wave_config>

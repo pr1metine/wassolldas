@@ -96,12 +96,12 @@ begin
         if rising_edge(CLK) then
             case currReadState is
                 when STATE_RESET =>
-                    addressA <= (others => '0');
+                    addressB <= (others => '0');
                     currReadState <= STATE_WAIT_FOR_INCREMENT;
                 when STATE_WAIT_FOR_INCREMENT =>
                     if TX_INCREMENT = '1' then
                         currReadState <= STATE_INCREMENT;
-                        addressA <= addressA + 1;
+                        addressB <= addressB + 1;
                     else
                         currReadState <= STATE_WAIT_FOR_INCREMENT;
                     end if;
@@ -126,13 +126,48 @@ begin
         if rising_edge(CLK) then
             case currWriteState is
                 when STATE_RESET =>
-                    addressB <= (others => '0');
+                    addressA <= (others => '0');
                     currWindowLength := 0;
+                    DIN_INCREMENT <= '0';
+                    writeEnable <= "0";
                     currWriteState <= STATE_OVERWRITE;
                 when STATE_ADD =>
+                    dinA <= std_logic_vector(unsigned('0' & DIN(WIDTH - 1 downto 1)) + unsigned(doutA));
+                    DIN_INCREMENT <= '1';
+                    writeEnable <= "1";
+                    addressA <= addressA + 1;
+                    
+                    currWindowLength := currWindowLength + 1;
+                    if currWindowLength >= STANDARD_WINDOW_OFFSET then
+                        currWriteState <= STATE_OVERWRITE;
+                    else
+                        currWriteState <= STATE_ADD;
+                    end if;
                 when STATE_OVERWRITE =>
+                    dinA <= '0' & DIN(WIDTH - 1 downto 1);
+                    DIN_INCREMENT <= '1';
+                    writeEnable <= "1";
+                    addressA <= addressA + 1;
+                    
+                    currWindowLength := currWindowLength + 1;
+                    if currWindowLength >= WINDOW_LENGTH then
+                        addressA <= addressA - STANDARD_WINDOW_OFFSET;
+                        currWriteState <= STATE_WAIT_FOR_NEXT_LOAD;
+                    else
+                        currWriteState <= STATE_OVERWRITE;
+                    end if;
                 when STATE_WAIT_FOR_NEXT_LOAD =>
+                    DIN_INCREMENT <= '0';
+                    writeEnable <= "0";
+                    currWindowLength := 0;
+                    
+                    if addressB >= addressA then
+                        currWriteState <= STATE_ADD;
+                    else
+                        currWriteState <= STATE_WAIT_FOR_NEXT_LOAD;
+                    end if;
             end case;
+            
             if RESET = '1' then
                 currWriteState <= STATE_RESET;
             end if;
