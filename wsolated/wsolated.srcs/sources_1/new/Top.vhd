@@ -38,6 +38,10 @@ entity Top is
             STANDARD_WINDOW_OFFSET : INTEGER := 240 );
     Port ( CLK_100MHZ : in STD_LOGIC;
          RESET : in STD_LOGIC;
+         SW0 : in STD_LOGIC;
+         SW1 : in STD_LOGIC;
+         SW2 : in STD_LOGIC;
+         SW3 : in STD_LOGIC;
          MCLK : out STD_LOGIC;
          LRCK : out STD_LOGIC;
          SCLK : out STD_LOGIC;
@@ -63,8 +67,9 @@ architecture Behavioral of Top is
                 BURST_LENGTH: INTEGER := 480;
                 WIDTH: INTEGER := 16 );
         Port ( CLK : in STD_LOGIC;
+             ENABLE : in STD_LOGIC;
              RESET : in STD_LOGIC;
-             INCREMENT_ENABLE : in STD_LOGIC_VECTOR(3 downto 0);
+             INCREMENT_ADDEND : in STD_LOGIC_VECTOR(3 downto 0); -- may extract increment enable width to a generic parameter
              DOUT : out STD_LOGIC_VECTOR(WIDTH - 1 downto 0));
     end component;
     component WSOLATransformer is
@@ -115,8 +120,9 @@ begin
                     BURST_LENGTH => WINDOW_LENGTH,
                     WIDTH => WIDTH)
         port map( CLK => CLK_100MHZ,
+                 ENABLE => dinIncrement,
                  RESET => systemReset,
-                 INCREMENT_ENABLE => dinIncrement & dinIncrement & dinIncrement & dinIncrement, -- TODO: change
+                 INCREMENT_ADDEND => SW3 & SW2 & SW1 & SW0, -- TODO: change
                  DOUT => wireDIN);
 
     transformer: WSOLATransformer

@@ -49,13 +49,9 @@ entity WSOLATransformer is
 end WSOLATransformer;
 
 architecture Behavioral of WSOLATransformer is
-    type State is (STATE_RESET, STATE_INITIAL_DIN_LOADING, STATE_INITIAL_STORING, STATE_DIN_LOADING, STATE_STORING, STATE_WAITING_FOR_READ, STATE_BEING_READ);
+    type State is (STATE_RESET, STATE_WAITING_FOR_READ, STATE_BEING_READ);
     signal currState: State := STATE_RESET;
     signal currYStartPosition: INTEGER := 0;
-    --    signal regDIN: STD_LOGIC_VECTOR(WIDTH - 1 downto 0);
-
-    --    signal x: STD_LOGIC_VECTOR(2 * WINDOW_LENGTH * WIDTH - 1 downto 0);
-    --    signal y: STD_LOGIC_VECTOR(2 * WINDOW_LENGTH * WIDTH - 1 downto 0);
 begin
 
     process (CLK)
@@ -64,19 +60,10 @@ begin
         if rising_edge(CLK) then
             case currState is
                 when STATE_RESET =>
-                    --                    x <= (others => '0');
-                    --                    y <= (others => '0');
                     xPosition := 0;
                     currYStartPosition <= 0;
                     DIN_INCREMENT <= '0';
-                --                    currState <= STATE_INITIAL_DIN_LOADING;
                     currState <= STATE_WAITING_FOR_READ;
-                when STATE_INITIAL_DIN_LOADING =>
-                    --                    regDIN <= DIN;
-                    DIN_INCREMENT <= '0';
-                when STATE_INITIAL_STORING =>
-                when STATE_DIN_LOADING =>
-                when STATE_STORING =>
                 when STATE_WAITING_FOR_READ =>
                     if TX_INCREMENT = '1' then
                         currState <= STATE_BEING_READ;

@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.1.2 (win64) Build 3605665 Fri Aug  5 22:53:37 MDT 2022
-| Date         : Wed Dec 14 11:16:06 2022
+| Date         : Sat Dec 17 20:42:43 2022
 | Host         : DESKTOP-OUSEAHU running 64-bit major release  (build 9200)
 | Command      : report_methodology -file Top_methodology_drc_routed.rpt -pb Top_methodology_drc_routed.pb -rpx Top_methodology_drc_routed.rpx
 | Design       : Top
@@ -23,15 +23,14 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 85
+             Violations found: 77
 +-----------+------------------+----------------------------------------------------+------------+
 | Rule      | Severity         | Description                                        | Violations |
 +-----------+------------------+----------------------------------------------------+------------+
 | TIMING-4  | Critical Warning | Invalid primary clock redefinition on a clock tree | 1          |
 | TIMING-17 | Critical Warning | Non-clocked sequential cell                        | 70         |
 | TIMING-27 | Critical Warning | Invalid primary clock on hierarchical pin          | 1          |
-| TIMING-16 | Warning          | Large setup violation                              | 12         |
-| TIMING-18 | Warning          | Missing input or output delay                      | 1          |
+| TIMING-18 | Warning          | Missing input or output delay                      | 5          |
 +-----------+------------------+----------------------------------------------------+------------+
 
 2. REPORT DETAILS
@@ -396,69 +395,29 @@ Invalid primary clock on hierarchical pin
 A primary clock clock/inner/inst/clk_in1 is created on an inappropriate internal pin clock/inner/inst/clk_in1. It is not recommended to create a primary clock on a hierarchical pin when its driver pin has a fanout connected to multiple clock pins
 Related violations: <none>
 
-TIMING-16#1 Warning
-Large setup violation  
-There is a large setup violation of -4.291 ns between rom/address_reg[0]_replica/C (clocked by sys_clk_pin) and rom/address_reg[14]/D (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#2 Warning
-Large setup violation  
-There is a large setup violation of -4.322 ns between rom/address_reg[0]_replica/C (clocked by sys_clk_pin) and rom/address_reg[15]/D (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#3 Warning
-Large setup violation  
-There is a large setup violation of -4.327 ns between rom/address_reg[0]_replica/C (clocked by sys_clk_pin) and rom/address_reg[16]/D (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#4 Warning
-Large setup violation  
-There is a large setup violation of -4.423 ns between rom/address_reg[0]_replica/C (clocked by sys_clk_pin) and rom/address_reg[13]/D (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#5 Warning
-Large setup violation  
-There is a large setup violation of -4.474 ns between rom/address_reg[0]_replica/C (clocked by sys_clk_pin) and rom/address_reg[10]/D (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#6 Warning
-Large setup violation  
-There is a large setup violation of -4.482 ns between rom/address_reg[0]_replica/C (clocked by sys_clk_pin) and rom/address_reg[12]/D (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#7 Warning
-Large setup violation  
-There is a large setup violation of -4.487 ns between rom/address_reg[0]_replica/C (clocked by sys_clk_pin) and rom/address_reg[11]/D (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#8 Warning
-Large setup violation  
-There is a large setup violation of -4.531 ns between rom/address_reg[0]_replica/C (clocked by sys_clk_pin) and rom/address_reg[5]/D (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#9 Warning
-Large setup violation  
-There is a large setup violation of -4.545 ns between rom/address_reg[0]_replica/C (clocked by sys_clk_pin) and rom/address_reg[8]/D (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#10 Warning
-Large setup violation  
-There is a large setup violation of -4.553 ns between rom/address_reg[0]_replica/C (clocked by sys_clk_pin) and rom/address_reg[7]/D (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#11 Warning
-Large setup violation  
-There is a large setup violation of -4.602 ns between rom/address_reg[0]_replica/C (clocked by sys_clk_pin) and rom/address_reg[9]/D (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#12 Warning
-Large setup violation  
-There is a large setup violation of -4.670 ns between rom/address_reg[0]_replica/C (clocked by sys_clk_pin) and rom/address_reg[6]/D (clocked by sys_clk_pin). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
 TIMING-18#1 Warning
 Missing input or output delay  
 An input delay is missing on RESET relative to clock(s) sys_clk_pin
+Related violations: <none>
+
+TIMING-18#2 Warning
+Missing input or output delay  
+An input delay is missing on SW0 relative to clock(s) sys_clk_pin
+Related violations: <none>
+
+TIMING-18#3 Warning
+Missing input or output delay  
+An input delay is missing on SW1 relative to clock(s) sys_clk_pin
+Related violations: <none>
+
+TIMING-18#4 Warning
+Missing input or output delay  
+An input delay is missing on SW2 relative to clock(s) sys_clk_pin
+Related violations: <none>
+
+TIMING-18#5 Warning
+Missing input or output delay  
+An input delay is missing on SW3 relative to clock(s) sys_clk_pin
 Related violations: <none>
 
 
