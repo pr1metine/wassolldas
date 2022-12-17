@@ -67,15 +67,15 @@ architecture Behavioral of WSOLATransformer is
 
     type ReadState is (STATE_RESET, STATE_WAIT_FOR_INCREMENT, STATE_INCREMENT);
     signal currReadState: ReadState := STATE_RESET;
+    signal addressB: unsigned(9 downto 0) := (others => '0');
+    signal doutB: STD_LOGIC_VECTOR(WIDTH - 1 downto 0);
+
+    type WriteState is (STATE_RESET, STATE_WARMING_UP, STATE_TRANSFERING, STATE_COOLING_DOWN, STATE_WAIT_FOR_NEXT_LOAD);
+    signal currWriteState: WriteState := STATE_RESET;
     signal writeEnable: STD_LOGIC_VECTOR(0 downto 0) := (others => '0');
     signal addressA: unsigned(9 downto 0) := (others => '0');
     signal dinA: STD_LOGIC_VECTOR(WIDTH - 1 downto 0) := (others => '0');
     signal doutA: STD_LOGIC_VECTOR(WIDTH - 1 downto 0);
-
-    type WriteState is (STATE_RESET, STATE_WARMING_UP, STATE_TRANSFERING, STATE_COOLING_DOWN, STATE_WAIT_FOR_NEXT_LOAD);
-    signal currWriteState: WriteState := STATE_RESET;
-    signal addressB: unsigned(9 downto 0) := (others => '0');
-    signal doutB: STD_LOGIC_VECTOR(WIDTH - 1 downto 0);
     
     signal isOverwriting: std_logic := '0';
 begin
@@ -94,6 +94,7 @@ begin
         );
 
     read_process: process (CLK)
+        variable readPtr: unsigned(9 downto 0) := (others => '0');
     begin
         if rising_edge(CLK) then
             case currReadState is
@@ -121,6 +122,8 @@ begin
             end if;
         end if;
     end process;
+
+    TX <= doutB;
 
     write_process: process (CLK)
         variable currWindowLength: INTEGER := 0;
@@ -172,5 +175,4 @@ begin
     DIN_INCREMENT <= '1' when currWriteState = STATE_WARMING_UP or currWriteState = STATE_TRANSFERING else '0';
     writeEnable <= "1" when currWriteState = STATE_TRANSFERING or currWriteState = STATE_COOLING_DOWN else "0";
 
-    TX <= doutB;
 end Behavioral;

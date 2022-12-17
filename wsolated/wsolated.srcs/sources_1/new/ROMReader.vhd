@@ -63,15 +63,19 @@ begin
 
     process (CLK)
         variable currBurstLength: INTEGER := 0;
+        variable offset: INTEGER;
     begin
         if falling_edge(CLK) then
             if INCREMENT_ENABLE /= (3 downto 0 => '0') then
                 currBurstLength := currBurstLength + 1;
                 if currBurstLength >= BURST_LENGTH then
                     currBurstLength := 0;
+                    offset := 1 - BURST_LENGTH / 2;
 --                    address <= address + 1; -- TODO: adapt
+                else
+                    offset := 1;
                 end if;
-                address <= addressNext;
+                address <= (address + offset) mod ROM_SIZE;
             end if;
             
             if RESET = '1' then
