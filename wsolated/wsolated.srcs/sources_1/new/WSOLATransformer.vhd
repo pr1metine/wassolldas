@@ -72,10 +72,12 @@ architecture Behavioral of WSOLATransformer is
     signal dinA: STD_LOGIC_VECTOR(WIDTH - 1 downto 0) := (others => '0');
     signal doutA: STD_LOGIC_VECTOR(WIDTH - 1 downto 0);
 
-    type WriteState is (STATE_RESET, STATE_ADD, STATE_OVERWRITE, STATE_WAIT_FOR_NEXT_LOAD);
+    type WriteState is (STATE_RESET, STATE_WARMING_UP, STATE_TRANSFERING, STATE_COOLING_DOWN, STATE_WAIT_FOR_NEXT_LOAD);
     signal currWriteState: WriteState := STATE_RESET;
     signal addressB: unsigned(9 downto 0) := (others => '0');
     signal doutB: STD_LOGIC_VECTOR(WIDTH - 1 downto 0);
+    
+    signal isOverwriting: std_logic := '0';
 begin
     ram: WSOLARAM
         port map (
@@ -106,7 +108,7 @@ begin
                         currReadState <= STATE_WAIT_FOR_INCREMENT;
                     end if;
                 when STATE_INCREMENT =>
-                    
+
                     if TX_INCREMENT = '0' then
                         currReadState <= STATE_WAIT_FOR_INCREMENT;
                     else
@@ -128,51 +130,47 @@ begin
                 when STATE_RESET =>
                     addressA <= (others => '0');
                     currWindowLength := 0;
-                    DIN_INCREMENT <= '0';
-                    writeEnable <= "0";
-                    currWriteState <= STATE_OVERWRITE;
-                when STATE_ADD =>
-                    dinA <= std_logic_vector(unsigned('0' & DIN(WIDTH - 1 downto 1)) + unsigned(doutA));
-                    DIN_INCREMENT <= '1';
-                    writeEnable <= "1";
+                    isOverwriting <= '1';
+                    currWriteState <= STATE_WARMING_UP;
+                when STATE_WARMING_UP =>
+                    currWriteState <= STATE_TRANSFERING;
+                when STATE_TRANSFERING =>
                     addressA <= addressA + 1;
-                    
                     currWindowLength := currWindowLength + 1;
-                    if currWindowLength >= STANDARD_WINDOW_OFFSET then
-                        currWriteState <= STATE_OVERWRITE;
-                    else
-                        currWriteState <= STATE_ADD;
-                    end if;
-                when STATE_OVERWRITE =>
-                    dinA <= '0' & DIN(WIDTH - 1 downto 1);
-                    DIN_INCREMENT <= '1';
-                    writeEnable <= "1";
-                    addressA <= addressA + 1;
                     
-                    currWindowLength := currWindowLength + 1;
-                    if currWindowLength >= WINDOW_LENGTH then
-                        addressA <= addressA - STANDARD_WINDOW_OFFSET;
-                        currWriteState <= STATE_WAIT_FOR_NEXT_LOAD;
-                    else
-                        currWriteState <= STATE_OVERWRITE;
+                    if currWindowLength + 1 >= STANDARD_WINDOW_OFFSET then
+                        isOverwriting <= '1';
                     end if;
+                    
+                    if currWindowLength + 1 >= WINDOW_LENGTH then
+                        currWriteState <= STATE_COOLING_DOWN;
+                    else
+                        currWriteState <= STATE_TRANSFERING;
+                    end if;
+                when STATE_COOLING_DOWN =>
+                    addressA <= addressA + 1 - STANDARD_WINDOW_OFFSET;
+                    currWriteState <= STATE_WAIT_FOR_NEXT_LOAD;
                 when STATE_WAIT_FOR_NEXT_LOAD =>
-                    DIN_INCREMENT <= '0';
-                    writeEnable <= "0";
+                    isOverwriting <= '1';
                     currWindowLength := 0;
-                    
+
                     if addressB >= addressA then
-                        currWriteState <= STATE_ADD;
+                        currWriteState <= STATE_WARMING_UP;
                     else
                         currWriteState <= STATE_WAIT_FOR_NEXT_LOAD;
                     end if;
             end case;
-            
+
             if RESET = '1' then
                 currWriteState <= STATE_RESET;
             end if;
         end if;
     end process write_process;
+
+--    dinA <= '0' & DIN(WIDTH - 1 downto 1) when isOverwriting = '1' else std_logic_vector(unsigned('0' & DIN(WIDTH - 1 downto 1)) + unsigned(doutA));
+    dinA <= DIN(WIDTH - 1 downto 0);    
+    DIN_INCREMENT <= '1' when currWriteState = STATE_WARMING_UP or currWriteState = STATE_TRANSFERING else '0';
+    writeEnable <= "1" when currWriteState = STATE_TRANSFERING or currWriteState = STATE_COOLING_DOWN else "0";
 
     TX <= doutB;
 end Behavioral;

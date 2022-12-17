@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.1.2 (win64) Build 3605665 Fri Aug  5 22:53:37 MDT 2022
-| Date         : Wed Dec 14 16:55:26 2022
+| Date         : Sat Dec 17 19:10:38 2022
 | Host         : DESKTOP-OUSEAHU running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file Top_control_sets_placed.rpt
 | Design       : Top
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |     8 |
-|    Minimum number of control sets                        |     8 |
+| Total control sets                                       |    12 |
+|    Minimum number of control sets                        |    12 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    28 |
+| Unused register locations in slices containing registers |    46 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,14 +39,14 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |     8 |
+| Total control sets |    12 |
 | >= 0 to < 4        |     3 |
 | >= 4 to < 6        |     0 |
-| >= 6 to < 8        |     0 |
+| >= 6 to < 8        |     1 |
 | >= 8 to < 10       |     0 |
-| >= 10 to < 12      |     0 |
+| >= 10 to < 12      |     2 |
 | >= 12 to < 14      |     0 |
-| >= 14 to < 16      |     0 |
+| >= 14 to < 16      |     1 |
 | >= 16              |     5 |
 +--------------------+-------+
 * Control sets can be remapped at either synth_design or opt_design
@@ -58,29 +58,33 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              84 |           47 |
+| No           | No                    | No                     |              52 |           16 |
 | No           | No                    | Yes                    |               0 |            0 |
-| No           | Yes                   | No                     |              32 |            8 |
-| Yes          | No                    | No                     |               2 |            2 |
+| No           | Yes                   | No                     |              39 |           11 |
+| Yes          | No                    | No                     |              12 |            5 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |              86 |           40 |
+| Yes          | Yes                   | No                     |              91 |           30 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 4. Detailed Control Set Information
 -----------------------------------
 
-+----------------------------+------------------------------------+------------------------------------+------------------+----------------+--------------+
-|        Clock Signal        |            Enable Signal           |          Set/Reset Signal          | Slice Load Count | Bel Load Count | Bels / Slice |
-+----------------------------+------------------------------------+------------------------------------+------------------+----------------+--------------+
-|  wireSCLK_BUFG             | transmitter/regLRCK_i_1_n_0        |                                    |                1 |              1 |         1.00 |
-|  wireSCLK_BUFG             | transmitter/currState[0]           |                                    |                1 |              1 |         1.00 |
-|  clock/inner/inst/clk_out1 |                                    |                                    |                1 |              1 |         1.00 |
-|  wireSCLK_BUFG             | transmitter/bitCounter[31]_i_2_n_0 | transmitter/bitCounter[31]_i_1_n_0 |                9 |             32 |         3.56 |
-|  clock/inner/inst/clk_out1 |                                    | clock/counter[0]_i_1_n_0           |                8 |             32 |         4.00 |
-|  wireSCLK_BUFG             |                                    |                                    |                6 |             36 |         6.00 |
-|  CLK_100MHZ_IBUF_BUFG      |                                    |                                    |               40 |             47 |         1.17 |
-|  CLK_100MHZ_IBUF_BUFG      | transformer/DIN_INCREMENT          | clock/LED0_OBUF                    |               31 |             54 |         1.74 |
-+----------------------------+------------------------------------+------------------------------------+------------------+----------------+--------------+
++----------------------------+------------------------------------+--------------------------------------------------------+------------------+----------------+--------------+
+|        Clock Signal        |            Enable Signal           |                    Set/Reset Signal                    | Slice Load Count | Bel Load Count | Bels / Slice |
++----------------------------+------------------------------------+--------------------------------------------------------+------------------+----------------+--------------+
+|  clock/inner/inst/clk_out1 |                                    |                                                        |                1 |              1 |         1.00 |
+|  wireSCLK_BUFG             | transmitter/regLRCK_i_1_n_0        |                                                        |                1 |              1 |         1.00 |
+|  wireSCLK_BUFG             | transmitter/currState[0]           |                                                        |                1 |              1 |         1.00 |
+|  CLK_100MHZ_IBUF_BUFG      |                                    | clock/SR[0]                                            |                3 |              7 |         2.33 |
+|  CLK_100MHZ_IBUF_BUFG      | transformer/addressA               | transformer/addressA[9]_i_1_n_0                        |                5 |             10 |         2.00 |
+|  CLK_100MHZ_IBUF_BUFG      | transformer/addressB               |                                                        |                3 |             10 |         3.33 |
+|  CLK_100MHZ_IBUF_BUFG      |                                    |                                                        |                8 |             15 |         1.88 |
+| ~CLK_100MHZ_IBUF_BUFG      | transformer/E[0]                   | clock/SR[0]                                            |                7 |             17 |         2.43 |
+|  clock/inner/inst/clk_out1 |                                    | clock/counter[0]_i_1_n_0                               |                8 |             32 |         4.00 |
+|  wireSCLK_BUFG             | transmitter/bitCounter[31]_i_2_n_0 | transmitter/bitCounter[31]_i_1_n_0                     |                9 |             32 |         3.56 |
+|  CLK_100MHZ_IBUF_BUFG      | transformer/currWindowLength_0     | transformer/write_process.currWindowLength[31]_i_1_n_0 |                9 |             32 |         3.56 |
+|  wireSCLK_BUFG             |                                    |                                                        |                7 |             36 |         5.14 |
++----------------------------+------------------------------------+--------------------------------------------------------+------------------+----------------+--------------+
 
 

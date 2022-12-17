@@ -21,7 +21,8 @@
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-
+library xpm;
+use xpm.vcomponents.all;
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
 --use IEEE.NUMERIC_STD.ALL;
@@ -96,9 +97,11 @@ architecture Behavioral of Top is
     signal systemReset: STD_LOGIC := '1';
     signal dinIncrement: STD_LOGIC := '0';
     signal txIncrement: STD_LOGIC := '0';
+    signal txIncrementFast: STD_LOGIC := '0';
     signal wireSCLK: STD_LOGIC := '0';
     signal wireDIN: STD_LOGIC_VECTOR(WIDTH - 1 downto 0) := (others => '0');
     signal wireTX: STD_LOGIC_VECTOR(WIDTH - 1 downto 0) := (others => '0');
+    signal wireTXSlow: STD_LOGIC_VECTOR(WIDTH - 1 downto 0) := (others => '0');
     signal wireMCLK: STD_LOGIC := '0';
     signal locked: STD_LOGIC := '0';
 begin
@@ -126,15 +129,39 @@ begin
         port map ( CLK => CLK_100MHZ,
                  RESET => systemReset,
                  DIN_INCREMENT => dinIncrement,
+--                 TX_INCREMENT => txIncrementFast,
                  TX_INCREMENT => txIncrement,
                  DIN => wireDIN,
                  TX => wireTX );
 
+    xpm_cdc_Data : xpm_cdc_gray
+        generic map ( DEST_SYNC_FF => 4,
+                    INIT_SYNC_FF => 0,
+                    SIM_ASSERT_CHK => 0,
+                    WIDTH => WIDTH
+                   )
+        port map (  src_clk => CLK_100MHZ,
+                 src_in_bin => wireTX,
+                 dest_clk => wireSCLK,
+                 dest_out_bin => wireTXSlow
+                );
+
+    xpm_cdc_Increment : xpm_cdc_single
+        generic map ( DEST_SYNC_FF => 4,
+                    SRC_INPUT_REG => 1
+                   )
+        port map (  src_clk => wireSCLK,
+                 src_in => txIncrement,
+                 dest_clk => CLK_100MHZ,
+                 dest_out => txIncrementFast
+                );
+  
     transmitter: I2STransmitter
         generic map ( WIDTH => WIDTH )
         port map ( CLK => wireSCLK,
                  RESET => systemReset,
                  READY => txIncrement,
+--                 TX => wireTXSlow & wireTXSlow,
                  TX => wireTX & wireTX,
                  LRCK => LRCK,
                  SCLK => SCLK,

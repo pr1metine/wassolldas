@@ -47,39 +47,40 @@ architecture Behavioral of ROMReader is
         Port (
             clka : IN STD_LOGIC;
             addra : IN STD_LOGIC_VECTOR(16 DOWNTO 0);
-            douta : OUT STD_LOGIC_VECTOR(WIDTH - 1 DOWNTO 0)
+            douta : OUT STD_LOGIC_VECTOR(15 DOWNTO 0)
         );
     end component;
 
-    signal address: std_logic_vector(16 downto 0) := (others => '0');
+    signal address: unsigned(16 downto 0) := (others => '0');
+    signal addressNext: unsigned(16 downto 0) := (others => '0');
 begin
     rom: PCMROM
         port map(
             clka => CLK,
-            addra => address,
+            addra => std_logic_vector(address),
             douta => DOUT
         );
 
     process (CLK)
         variable currBurstLength: INTEGER := 0;
-        variable addressCounter: INTEGER := 0;
     begin
-        if rising_edge(CLK) then
+        if falling_edge(CLK) then
             if INCREMENT_ENABLE /= (3 downto 0 => '0') then
                 currBurstLength := currBurstLength + 1;
                 if currBurstLength >= BURST_LENGTH then
                     currBurstLength := 0;
 --                    address <= address + 1; -- TODO: adapt
                 end if;
-                addressCounter := (addressCounter + 1) mod ROM_SIZE;
-                address <= std_logic_vector(to_unsigned(addressCounter, 17));
+                address <= addressNext;
             end if;
             
             if RESET = '1' then
                 currBurstLength := 0;
-                addressCounter := 0;
                 address <= (others => '0');
             end if;
         end if;
     end process;
+    
+    addressNext <= (address + 1) mod ROM_SIZE;
+    
 end Behavioral;
