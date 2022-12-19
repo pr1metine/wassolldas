@@ -11,13 +11,13 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0.000000 us"></ZoomStartTime>
-      <ZoomEndTime time="170.480001 us"></ZoomEndTime>
-      <Cursor1Time time="63.246779 us"></Cursor1Time>
+      <ZoomStartTime time="17.066928 us"></ZoomStartTime>
+      <ZoomEndTime time="237.786615 us"></ZoomEndTime>
+      <Cursor1Time time="201.000000 us"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="266"></NameColumnWidth>
-      <ValueColumnWidth column_width="110"></ValueColumnWidth>
+      <ValueColumnWidth column_width="106"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="17" />
    <wvobject fp_name="/TopTB/CLK_100MHZ" type="logic">
@@ -52,17 +52,13 @@
       <obj_property name="ElementShortName">currState</obj_property>
       <obj_property name="ObjectShortName">currState</obj_property>
    </wvobject>
-   <wvobject fp_name="/TopTB/dut/rom/INCREMENT_ENABLE" type="array">
-      <obj_property name="ElementShortName">INCREMENT_ENABLE[3:0]</obj_property>
-      <obj_property name="ObjectShortName">INCREMENT_ENABLE[3:0]</obj_property>
-   </wvobject>
    <wvobject fp_name="/TopTB/dut/rom/DOUT" type="array">
       <obj_property name="ElementShortName">DOUT[15:0]</obj_property>
       <obj_property name="ObjectShortName">DOUT[15:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/TopTB/dut/rom/address" type="array">
-      <obj_property name="ElementShortName">address[16:0]</obj_property>
-      <obj_property name="ObjectShortName">address[16:0]</obj_property>
+      <obj_property name="ElementShortName">address[18:0]</obj_property>
+      <obj_property name="ObjectShortName">address[18:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/TopTB/RESET" type="logic">
       <obj_property name="ElementShortName">RESET</obj_property>
@@ -87,5 +83,9 @@
    <wvobject fp_name="/TopTB/dut/rom/rom/clka" type="logic">
       <obj_property name="ElementShortName">clka</obj_property>
       <obj_property name="ObjectShortName">clka</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TopTB/SW" type="array">
+      <obj_property name="ElementShortName">SW[3:0]</obj_property>
+      <obj_property name="ObjectShortName">SW[3:0]</obj_property>
    </wvobject>
 </wave_config>

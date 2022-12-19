@@ -96,19 +96,19 @@ OPTRACE "Adding files" START { }
 add_files C:/Users/derth/projects/fpga/wassolldas/wav2coe/out/mario.wav.coe
 add_files C:/Users/derth/projects/fpga/playback/mario.coe
 read_vhdl -library xil_defaultlib {
+  C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/Bridge.vhd
   C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/I2SClockGenerator.vhd
   C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/I2STransmitter.vhd
   C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/ROMReader.vhd
-  C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/WSOLATransformer.vhd
   C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/Top.vhd
 }
-read_ip -quiet C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/ip/PCMROM/PCMROM.xci
-set_property used_in_implementation false [get_files -all c:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.gen/sources_1/ip/PCMROM/PCMROM_ooc.xdc]
-
 read_ip -quiet C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/ip/AudioClock/AudioClock.xci
 set_property used_in_implementation false [get_files -all c:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.gen/sources_1/ip/AudioClock/AudioClock_board.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.gen/sources_1/ip/AudioClock/AudioClock.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.gen/sources_1/ip/AudioClock/AudioClock_ooc.xdc]
+
+read_ip -quiet C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/ip/PCMROM/PCMROM.xci
+set_property used_in_implementation false [get_files -all c:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.gen/sources_1/ip/PCMROM/PCMROM_ooc.xdc]
 
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
@@ -122,8 +122,6 @@ foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
 read_xdc C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/constrs_1/imports/new/Arty-A7-35-Master.xdc
 set_property used_in_implementation false [get_files C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/constrs_1/imports/new/Arty-A7-35-Master.xdc]
 
-read_xdc dont_touch.xdc
-set_property used_in_implementation false [get_files dont_touch.xdc]
 set_param ips.enableIPCacheLiteLoad 1
 
 read_checkpoint -auto_incremental -incremental C:/Users/derth/projects/fpga/wassolldas/wsolated.srcs/utils_1/imports/synth_1/Top.dcp

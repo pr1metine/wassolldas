@@ -2,8 +2,8 @@
 # Vivado v2022.1.2 (64-bit)
 # SW Build 3605665 on Fri Aug  5 22:53:37 MDT 2022
 # IP Build 3603185 on Sat Aug  6 04:07:44 MDT 2022
-# Start of session at: Sat Dec 17 20:40:12 2022
-# Process ID: 33812
+# Start of session at: Mon Dec 19 01:51:54 2022
+# Process ID: 15172
 # Current directory: C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.runs/synth_1
 # Command line: vivado.exe -log Top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Top.tcl
 # Log file: C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.runs/synth_1/Top.vds
@@ -26,105 +26,95 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 28084
+INFO: [Synth 8-7075] Helper process launched with PID 12428
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:07 . Memory (MB): peak = 1274.254 ; gain = 0.000
+Starting RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:06 . Memory (MB): peak = 1285.246 ; gain = 0.000
 ---------------------------------------------------------------------------------
-WARNING: [Synth 8-9112] actual for formal port 'increment_addend' is neither a static name nor a globally static expression [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/Top.vhd:125]
-WARNING: [Synth 8-9112] actual for formal port 'tx' is neither a static name nor a globally static expression [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/Top.vhd:144]
-INFO: [Synth 8-638] synthesizing module 'Top' [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/Top.vhd:55]
+WARNING: [Synth 8-9112] actual for formal port 'increment_addend' is neither a static name nor a globally static expression [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/Top.vhd:126]
+WARNING: [Synth 8-9112] actual for formal port 'tx' is neither a static name nor a globally static expression [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/Top.vhd:143]
+INFO: [Synth 8-638] synthesizing module 'Top' [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/Top.vhd:63]
 	Parameter RATIO bound to: 8 - type: integer 
-INFO: [Synth 8-3491] module 'I2SClockGenerator' declared at 'C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/I2SClockGenerator.vhd:34' bound to instance 'clock' of component 'I2SClockGenerator' [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/Top.vhd:110]
-INFO: [Synth 8-638] synthesizing module 'I2SClockGenerator' [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/I2SClockGenerator.vhd:43]
+INFO: [Synth 8-3491] module 'I2SClockGenerator' declared at 'C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/I2SClockGenerator.vhd:23' bound to instance 'clock' of component 'I2SClockGenerator' [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/Top.vhd:113]
+INFO: [Synth 8-638] synthesizing module 'I2SClockGenerator' [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/I2SClockGenerator.vhd:39]
 	Parameter RATIO bound to: 8 - type: integer 
-INFO: [Synth 8-3491] module 'AudioClock' declared at 'C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.runs/synth_1/.Xil/Vivado-33812-DESKTOP-OUSEAHU/realtime/AudioClock_stub.vhdl:5' bound to instance 'inner' of component 'AudioClock' [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/I2SClockGenerator.vhd:56]
-INFO: [Synth 8-638] synthesizing module 'AudioClock' [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.runs/synth_1/.Xil/Vivado-33812-DESKTOP-OUSEAHU/realtime/AudioClock_stub.vhdl:15]
-INFO: [Synth 8-256] done synthesizing module 'I2SClockGenerator' (0#1) [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/I2SClockGenerator.vhd:43]
+INFO: [Synth 8-3491] module 'AudioClock' declared at 'C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.runs/synth_1/.Xil/Vivado-15172-DESKTOP-OUSEAHU/realtime/AudioClock_stub.vhdl:5' bound to instance 'inner' of component 'AudioClock' [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/I2SClockGenerator.vhd:55]
+INFO: [Synth 8-638] synthesizing module 'AudioClock' [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.runs/synth_1/.Xil/Vivado-15172-DESKTOP-OUSEAHU/realtime/AudioClock_stub.vhdl:15]
+INFO: [Synth 8-256] done synthesizing module 'I2SClockGenerator' (0#1) [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/I2SClockGenerator.vhd:39]
+	Parameter WIDTH bound to: 16 - type: integer 
+INFO: [Synth 8-3491] module 'ROMReader' declared at 'C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/ROMReader.vhd:32' bound to instance 'rom' of component 'ROMReader' [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/Top.vhd:121]
+INFO: [Synth 8-638] synthesizing module 'ROMReader' [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/ROMReader.vhd:49]
 	Parameter ROM_SIZE bound to: 100000 - type: integer 
-	Parameter BURST_LENGTH bound to: 480 - type: integer 
 	Parameter WIDTH bound to: 16 - type: integer 
-INFO: [Synth 8-3491] module 'ROMReader' declared at 'C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/ROMReader.vhd:35' bound to instance 'rom' of component 'ROMReader' [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/Top.vhd:118]
-INFO: [Synth 8-638] synthesizing module 'ROMReader' [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/ROMReader.vhd:46]
-	Parameter ROM_SIZE bound to: 100000 - type: integer 
-	Parameter BURST_LENGTH bound to: 480 - type: integer 
+INFO: [Synth 8-3491] module 'PCMROM' declared at 'C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.runs/synth_1/.Xil/Vivado-15172-DESKTOP-OUSEAHU/realtime/PCMROM_stub.vhdl:5' bound to instance 'rom' of component 'PCMROM' [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/ROMReader.vhd:65]
+INFO: [Synth 8-638] synthesizing module 'PCMROM' [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.runs/synth_1/.Xil/Vivado-15172-DESKTOP-OUSEAHU/realtime/PCMROM_stub.vhdl:14]
+INFO: [Synth 8-256] done synthesizing module 'ROMReader' (0#1) [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/ROMReader.vhd:49]
 	Parameter WIDTH bound to: 16 - type: integer 
-INFO: [Synth 8-3491] module 'PCMROM' declared at 'C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.runs/synth_1/.Xil/Vivado-33812-DESKTOP-OUSEAHU/realtime/PCMROM_stub.vhdl:5' bound to instance 'rom' of component 'PCMROM' [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/ROMReader.vhd:58]
-INFO: [Synth 8-638] synthesizing module 'PCMROM' [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.runs/synth_1/.Xil/Vivado-33812-DESKTOP-OUSEAHU/realtime/PCMROM_stub.vhdl:14]
-INFO: [Synth 8-256] done synthesizing module 'ROMReader' (0#1) [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/ROMReader.vhd:46]
+INFO: [Synth 8-3491] module 'Bridge' declared at 'C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/Bridge.vhd:25' bound to instance 'bridgey' of component 'Bridge' [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/Top.vhd:129]
+INFO: [Synth 8-638] synthesizing module 'Bridge' [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/Bridge.vhd:45]
 	Parameter WIDTH bound to: 16 - type: integer 
-	Parameter WINDOW_LENGTH bound to: 480 - type: integer 
-	Parameter STANDARD_WINDOW_OFFSET bound to: 240 - type: integer 
-INFO: [Synth 8-3491] module 'WSOLATransformer' declared at 'C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/WSOLATransformer.vhd:35' bound to instance 'transformer' of component 'WSOLATransformer' [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/Top.vhd:128]
-INFO: [Synth 8-638] synthesizing module 'WSOLATransformer' [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/WSOLATransformer.vhd:51]
+INFO: [Synth 8-256] done synthesizing module 'Bridge' (0#1) [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/Bridge.vhd:45]
 	Parameter WIDTH bound to: 16 - type: integer 
-	Parameter WINDOW_LENGTH bound to: 480 - type: integer 
-	Parameter STANDARD_WINDOW_OFFSET bound to: 240 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'WSOLATransformer' (0#1) [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/WSOLATransformer.vhd:51]
+INFO: [Synth 8-3491] module 'I2STransmitter' declared at 'C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/I2STransmitter.vhd:22' bound to instance 'transmitter' of component 'I2STransmitter' [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/Top.vhd:138]
+INFO: [Synth 8-638] synthesizing module 'I2STransmitter' [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/I2STransmitter.vhd:42]
 	Parameter WIDTH bound to: 16 - type: integer 
-INFO: [Synth 8-3491] module 'I2STransmitter' declared at 'C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/I2STransmitter.vhd:34' bound to instance 'transmitter' of component 'I2STransmitter' [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/Top.vhd:139]
-INFO: [Synth 8-638] synthesizing module 'I2STransmitter' [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/I2STransmitter.vhd:45]
-	Parameter WIDTH bound to: 16 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'I2STransmitter' (0#1) [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/I2STransmitter.vhd:45]
-INFO: [Synth 8-256] done synthesizing module 'Top' (0#1) [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/Top.vhd:55]
-WARNING: [Synth 8-6014] Unused sequential element currYStartPosition_reg was removed.  [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/WSOLATransformer.vhd:64]
+INFO: [Synth 8-256] done synthesizing module 'I2STransmitter' (0#1) [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/I2STransmitter.vhd:42]
+INFO: [Synth 8-256] done synthesizing module 'Top' (0#1) [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/sources_1/new/Top.vhd:63]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1274.254 ; gain = 0.000
+Finished RTL Elaboration : Time (s): cpu = 00:00:11 ; elapsed = 00:00:08 . Memory (MB): peak = 1285.246 ; gain = 0.000
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1274.254 ; gain = 0.000
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:11 ; elapsed = 00:00:08 . Memory (MB): peak = 1285.246 ; gain = 0.000
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1274.254 ; gain = 0.000
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:08 . Memory (MB): peak = 1285.246 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1274.254 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1285.246 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [c:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.gen/sources_1/ip/PCMROM/PCMROM/PCMROM_in_context.xdc] for cell 'rom/rom'
-Finished Parsing XDC File [c:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.gen/sources_1/ip/PCMROM/PCMROM/PCMROM_in_context.xdc] for cell 'rom/rom'
 Parsing XDC File [c:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.gen/sources_1/ip/AudioClock/AudioClock/AudioClock_in_context.xdc] for cell 'clock/inner'
 Finished Parsing XDC File [c:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.gen/sources_1/ip/AudioClock/AudioClock/AudioClock_in_context.xdc] for cell 'clock/inner'
+Parsing XDC File [c:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.gen/sources_1/ip/PCMROM/PCMROM/PCMROM_in_context.xdc] for cell 'rom/rom'
+Finished Parsing XDC File [c:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.gen/sources_1/ip/PCMROM/PCMROM/PCMROM_in_context.xdc] for cell 'rom/rom'
 Parsing XDC File [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/constrs_1/imports/new/Arty-A7-35-Master.xdc]
 Finished Parsing XDC File [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/constrs_1/imports/new/Arty-A7-35-Master.xdc]
 INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.srcs/constrs_1/imports/new/Arty-A7-35-Master.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/Top_propImpl.xdc].
 Resolution: To avoid this warning, move constraints listed in [.Xil/Top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
-Parsing XDC File [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.runs/synth_1/dont_touch.xdc]
-Finished Parsing XDC File [C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.runs/synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1322.246 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1317.367 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 1322.246 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1317.367 ; gain = 0.000
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'rom/rom' at clock pin 'clka' is different from the actual clock period '10.000', this can lead to different synthesis results.
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:20 ; elapsed = 00:00:19 . Memory (MB): peak = 1324.559 ; gain = 50.305
+Finished Constraint Validation : Time (s): cpu = 00:00:21 ; elapsed = 00:00:17 . Memory (MB): peak = 1320.145 ; gain = 34.898
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35ticsg324-1L
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:20 ; elapsed = 00:00:19 . Memory (MB): peak = 1324.559 ; gain = 50.305
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:21 ; elapsed = 00:00:17 . Memory (MB): peak = 1320.145 ; gain = 34.898
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
-Applied set_property IO_BUFFER_TYPE = NONE for CLK_100MHZ. (constraint file  c:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.gen/sources_1/ip/AudioClock/AudioClock/AudioClock_in_context.xdc, line 3).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for CLK_100MHZ. (constraint file  c:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.gen/sources_1/ip/AudioClock/AudioClock/AudioClock_in_context.xdc, line 4).
-Applied set_property KEEP_HIERARCHY = SOFT for rom/rom. (constraint file  auto generated constraint).
+Applied set_property IO_BUFFER_TYPE = NONE for CLK100MHZ. (constraint file  c:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.gen/sources_1/ip/AudioClock/AudioClock/AudioClock_in_context.xdc, line 3).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for CLK100MHZ. (constraint file  c:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.gen/sources_1/ip/AudioClock/AudioClock/AudioClock_in_context.xdc, line 4).
 Applied set_property KEEP_HIERARCHY = SOFT for clock/inner. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for rom/rom. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:21 ; elapsed = 00:00:19 . Memory (MB): peak = 1324.559 ; gain = 50.305
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:21 ; elapsed = 00:00:17 . Memory (MB): peak = 1320.145 ; gain = 34.898
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-802] inferred FSM for state register 'currState_reg' in module 'WSOLATransformer'
+INFO: [Synth 8-802] inferred FSM for state register 'currState_reg' in module 'Bridge'
 INFO: [Synth 8-802] inferred FSM for state register 'currState_reg' in module 'I2STransmitter'
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
@@ -133,7 +123,7 @@ INFO: [Synth 8-802] inferred FSM for state register 'currState_reg' in module 'I
   state_waiting_for_read |                               01 |                               01
         state_being_read |                               10 |                               10
 ---------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 'currState_reg' using encoding 'sequential' in module 'WSOLATransformer'
+INFO: [Synth 8-3354] encoded FSM with state register 'currState_reg' using encoding 'sequential' in module 'Bridge'
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
@@ -143,7 +133,7 @@ INFO: [Synth 8-3354] encoded FSM with state register 'currState_reg' using encod
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'currState_reg' using encoding 'sequential' in module 'I2STransmitter'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:21 ; elapsed = 00:00:20 . Memory (MB): peak = 1324.559 ; gain = 50.305
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:21 ; elapsed = 00:00:17 . Memory (MB): peak = 1320.145 ; gain = 34.898
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -179,25 +169,25 @@ Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:23 ; elapsed = 00:00:22 . Memory (MB): peak = 1324.559 ; gain = 50.305
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:23 ; elapsed = 00:00:19 . Memory (MB): peak = 1320.145 ; gain = 34.898
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:32 ; elapsed = 00:00:30 . Memory (MB): peak = 1324.559 ; gain = 50.305
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:31 ; elapsed = 00:00:26 . Memory (MB): peak = 1320.145 ; gain = 34.898
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:32 ; elapsed = 00:00:30 . Memory (MB): peak = 1324.559 ; gain = 50.305
+Finished Timing Optimization : Time (s): cpu = 00:00:31 ; elapsed = 00:00:26 . Memory (MB): peak = 1320.145 ; gain = 34.898
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:32 ; elapsed = 00:00:30 . Memory (MB): peak = 1324.559 ; gain = 50.305
+Finished Technology Mapping : Time (s): cpu = 00:00:31 ; elapsed = 00:00:26 . Memory (MB): peak = 1320.145 ; gain = 34.898
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -215,37 +205,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:39 ; elapsed = 00:00:36 . Memory (MB): peak = 1324.559 ; gain = 50.305
+Finished IO Insertion : Time (s): cpu = 00:00:37 ; elapsed = 00:00:30 . Memory (MB): peak = 1320.145 ; gain = 34.898
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:39 ; elapsed = 00:00:36 . Memory (MB): peak = 1324.559 ; gain = 50.305
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:37 ; elapsed = 00:00:30 . Memory (MB): peak = 1320.145 ; gain = 34.898
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:39 ; elapsed = 00:00:36 . Memory (MB): peak = 1324.559 ; gain = 50.305
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:37 ; elapsed = 00:00:30 . Memory (MB): peak = 1320.145 ; gain = 34.898
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:39 ; elapsed = 00:00:36 . Memory (MB): peak = 1324.559 ; gain = 50.305
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:37 ; elapsed = 00:00:30 . Memory (MB): peak = 1320.145 ; gain = 34.898
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:39 ; elapsed = 00:00:36 . Memory (MB): peak = 1324.559 ; gain = 50.305
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:37 ; elapsed = 00:00:30 . Memory (MB): peak = 1320.145 ; gain = 34.898
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:39 ; elapsed = 00:00:36 . Memory (MB): peak = 1324.559 ; gain = 50.305
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:37 ; elapsed = 00:00:30 . Memory (MB): peak = 1320.145 ; gain = 34.898
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -277,27 +267,27 @@ Report Cell Usage:
 |12    |OBUF            |     7|
 +------+----------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:39 ; elapsed = 00:00:36 . Memory (MB): peak = 1324.559 ; gain = 50.305
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:37 ; elapsed = 00:00:30 . Memory (MB): peak = 1320.145 ; gain = 34.898
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:27 ; elapsed = 00:00:34 . Memory (MB): peak = 1324.559 ; gain = 0.000
-Synthesis Optimization Complete : Time (s): cpu = 00:00:39 ; elapsed = 00:00:36 . Memory (MB): peak = 1324.559 ; gain = 50.305
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:24 ; elapsed = 00:00:28 . Memory (MB): peak = 1320.145 ; gain = 0.000
+Synthesis Optimization Complete : Time (s): cpu = 00:00:37 ; elapsed = 00:00:30 . Memory (MB): peak = 1320.145 ; gain = 34.898
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1324.559 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 1320.145 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 43 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-140] Inserted 1 IBUFs to IO ports without IO buffers.
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1324.559 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1320.145 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Synth Design complete, checksum: 65b9800a
+Synth Design complete, checksum: 1ce02c0c
 INFO: [Common 17-83] Releasing license: Synthesis
-47 Infos, 5 Warnings, 0 Critical Warnings and 0 Errors encountered.
+47 Infos, 4 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:45 ; elapsed = 00:00:43 . Memory (MB): peak = 1324.559 ; gain = 50.305
+synth_design: Time (s): cpu = 00:00:43 ; elapsed = 00:00:36 . Memory (MB): peak = 1320.145 ; gain = 34.898
 INFO: [Common 17-1381] The checkpoint 'C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.runs/synth_1/Top.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file Top_utilization_synth.rpt -pb Top_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sat Dec 17 20:41:06 2022...
+INFO: [Common 17-206] Exiting Vivado at Mon Dec 19 01:52:39 2022...

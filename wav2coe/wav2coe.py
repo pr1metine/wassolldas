@@ -1,3 +1,15 @@
+# This script takes a wav file and turns it into a coe file. 
+# This coe file can be used in Vivado to initialize ROM generated 
+# with the Block Memory Generator.
+# 
+# Due to memory limitations, the playback can only be about 2 seconds
+# long. The corresponding coe file contains 16-bit PCM data which is
+# meant to be played back with a sample rate of 48 kHz.
+#  
+# If you plan to run this script, install the /wav2coe/requirements.txt
+# with PIP. It is highly recommended to create a virtual environment
+# first
+
 # %%
 import librosa
 import soundfile
@@ -6,9 +18,15 @@ from os.path import dirname, join, exists, basename
 from os import makedirs
 import sys
 
+
 dirname = dirname(__file__)
+# If no wav file path was passed, use ./data/mario.wav instead.
 input_wav = join("data", "mario.wav") if len(sys.argv) <= 1 else sys.argv[1]
-offset = 48000 if len(sys.argv) <= 2 else int(sys.argv[2])
+# Offset defines the amount of samples which should be skipped in the 
+# beginning of a wav file. If no offset was passed, use 48000 + 13620.
+# This offset was chosen so that the first samples are non-zero
+offset = 48000 + 13620 if len(sys.argv) <= 2 else int(sys.argv[2])
+
 input_wav_name = basename(input_wav)
 
 # %%
@@ -37,8 +55,7 @@ else:
     resampled = waveform
 
 # %%
-
-
+# Turns a floating point number to a 16 bit signed hexadecimal number.
 def float_to_16_hex(f: float) -> str:
     # Convert the float in the range of [-1.0, 1.0) to a 16-bit signed integer
     if not (-1.0 <= f < 1.0):

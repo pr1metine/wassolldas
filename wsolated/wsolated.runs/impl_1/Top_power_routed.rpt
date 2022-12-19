@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2022.1.2 (win64) Build 3605665 Fri Aug  5 22:53:37 MDT 2022
-| Date             : Sat Dec 17 20:42:45 2022
+| Date             : Mon Dec 19 01:54:07 2022
 | Host             : DESKTOP-OUSEAHU running 64-bit major release  (build 9200)
 | Command          : report_power -file Top_power_routed.rpt -pb Top_power_summary_routed.pb -rpx Top_power_routed.rpx
 | Design           : Top
@@ -54,7 +54,7 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |     0.003 |        6 |       --- |             --- |
 | Slice Logic    |     0.002 |      752 |       --- |             --- |
-|   LUT as Logic |     0.001 |      271 |     20800 |            1.30 |
+|   LUT as Logic |     0.001 |      272 |     20800 |            1.31 |
 |   CARRY4       |    <0.001 |       43 |      8150 |            0.53 |
 |   Register     |    <0.001 |      169 |     41600 |            0.41 |
 |   F7/F8 Muxes  |    <0.001 |       27 |     32600 |            0.08 |
@@ -133,8 +133,8 @@ Table of Contents
 +---------------------+--------------------------------------+-----------------+
 | clk_out1_AudioClock | clock/inner/inst/clk_out1_AudioClock |            81.4 |
 | clkfbout_AudioClock | clock/inner/inst/clkfbout_AudioClock |            50.0 |
-| sys_clk_pin         | CLK_100MHZ                           |            10.0 |
-| sys_clk_pin         | CLK_100MHZ_IBUF_BUFG                 |            10.0 |
+| sys_clk_pin         | CLK100MHZ                            |            10.0 |
+| sys_clk_pin         | CLK100MHZ_IBUF_BUFG                  |            10.0 |
 +---------------------+--------------------------------------+-----------------+
 
 

@@ -2,11 +2,11 @@
 vhdl xil_defaultlib  \
 "../../../../wsolated.gen/sources_1/ip/PCMROM/PCMROM_sim_netlist.vhdl" \
 "../../../../wsolated.gen/sources_1/ip/AudioClock/AudioClock_sim_netlist.vhdl" \
+"../../../../wsolated.srcs/sources_1/new/Bridge.vhd" \
 "../../../../wsolated.srcs/sources_1/new/I2SClockGenerator.vhd" \
 "../../../../wsolated.srcs/sources_1/new/I2STransmitter.vhd" \
 "../../../../wsolated.srcs/sources_1/new/ROMReader.vhd" \
 "../../../../wsolated.srcs/sources_1/new/Top.vhd" \
-"../../../../wsolated.srcs/sources_1/new/WSOLATransformer.vhd" \
 "../../../../wsolated.srcs/sim_1/new/TopTB.vhd" \
 
 # Do not sort compile order

@@ -1,46 +1,45 @@
 ----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
+-- Company:  DHBW Ravensburg
+-- Engineer: Quang Thanh Ta
 -- 
 -- Create Date: 12/11/2022 06:04:26 PM
--- Design Name: 
+-- Design Name: wsolated
 -- Module Name: I2SClockGenerator - Behavioral
--- Project Name: 
--- Target Devices: 
--- Tool Versions: 
+-- Project Name: wassolldas
+-- Target Devices: Arty A7-35T
+-- Tool Versions: Vivado 2022.1.2
 -- Description: 
--- 
+--      Generates the clocks needed for I2S.
+--
 -- Dependencies: 
--- 
--- Revision:
--- Revision 0.01 - File Created
--- Additional Comments:
+--      IP core "Clocking Wizard"
+-- Revision: v1.0.0
 -- 
 ----------------------------------------------------------------------------------
-
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
-
--- Uncomment the following library declaration if instantiating
--- any Xilinx leaf cells in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
-
 entity I2SClockGenerator is
-    Generic ( RATIO: INTEGER := 8 );
-    Port ( CLK : in STD_LOGIC;
-         RESET : in STD_LOGIC;
-         LOCKED : out STD_LOGIC;
-         MCLK : out STD_LOGIC;
-         SCLK : out STD_LOGIC );
+    Generic (
+        RATIO: INTEGER := 8 );
+    Port (
+        -- A global clock at 100 MHz
+        CLK : in STD_LOGIC;
+        -- Resets clocks. Active high
+        RESET : in STD_LOGIC;
+        -- Specifies if clock is stable. Active high  
+        LOCKED : out STD_LOGIC;
+        -- Master Clock at 12.288 MHz
+        MCLK : out STD_LOGIC;
+        -- Serial Clock at 1.536 MHz. Also called SCK
+        SCLK : out STD_LOGIC );
 end I2SClockGenerator;
 
 architecture Behavioral of I2SClockGenerator is
+    -- AudioClock entity generated from IP core "Clocking Wizard"
+    -- Generates MCLK
+    -- Can be reset. Active high
     component AudioClock is
         Port (
             clk_in1: in STD_LOGIC;
@@ -61,6 +60,7 @@ begin
             locked => LOCKED
         );
 
+    -- Generates SCLK
     process (regMCLK)
         variable counter: INTEGER := 0;
     begin

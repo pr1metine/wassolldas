@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Vivado v2022.1.2 (64-bit)
+# SW Build 3605665 on Fri Aug  5 22:53:37 MDT 2022
+# IP Build 3603185 on Sat Aug  6 04:07:44 MDT 2022
+# Start of session at: Mon Dec 19 01:50:05 2022
+# Process ID: 15532
+# Current directory: C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.runs/PCMROM_synth_1
+# Command line: vivado.exe -log PCMROM.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source PCMROM.tcl
+# Log file: C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.runs/PCMROM_synth_1/PCMROM.vds
+# Journal file: C:/Users/derth/projects/fpga/wassolldas/wsolated/wsolated.runs/PCMROM_synth_1\vivado.jou
+# Running On: DESKTOP-OUSEAHU, OS: Windows, CPU Frequency: 3593 MHz, CPU Physical cores: 12, Host memory: 17116 MB
+#-----------------------------------------------------------
+source PCMROM.tcl -notrace

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="PCMROM_synth_1" LaunchPart="xc7a35ticsg324-1L" LaunchTime="1671411001">
+  <File Type="PA-TCL" Name="PCMROM.tcl"/>
+  <File Type="RDS-PROPCONSTRS" Name="PCMROM_drc_synth.rpt"/>
+  <File Type="REPORTS-TCL" Name="PCMROM_reports.tcl"/>
+  <File Type="RDS-RDS" Name="PCMROM.vds"/>
+  <File Type="RDS-UTIL" Name="PCMROM_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="PCMROM_utilization_synth.pb"/>
+  <File Type="RDS-DCP" Name="PCMROM.dcp"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="PCMROM_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="PCMROM_timing_summary_synth.pb"/>
+  <FileSet Name="sources" Type="BlockSrcs" RelSrcDir="$PSRCDIR/PCMROM">
+    <File Path="$PSRCDIR/sources_1/ip/PCMROM/PCMROM.xci">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TopModule" Val="PCMROM"/>
+      <Option Name="UseBlackboxStub" Val="1"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="BlockSrcs" RelSrcDir="$PSRCDIR/PCMROM">
+    <File Path="$PSRCDIR/sources_1/ip/PCMROM/PCMROM.xci">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TopModule" Val="PCMROM"/>
+      <Option Name="UseBlackboxStub" Val="1"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1">
+    <Filter Type="Utils"/>
+    <File Path="$PPRDIR/../wsolated.srcs/utils_1/imports/synth_1/Top.dcp">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedInSteps" Val="synth_1"/>
+        <Attr Name="AutoDcp" Val="1"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2022">
+      <Desc>Vivado Synthesis Defaults</Desc>
+    </StratHandle>
+    <Step Id="synth_design"/>
+  </Strategy>
+</GenRun>

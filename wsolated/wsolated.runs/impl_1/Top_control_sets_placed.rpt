@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.1.2 (win64) Build 3605665 Fri Aug  5 22:53:37 MDT 2022
-| Date         : Sat Dec 17 20:42:09 2022
+| Date         : Mon Dec 19 01:53:35 2022
 | Host         : DESKTOP-OUSEAHU running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file Top_control_sets_placed.rpt
 | Design       : Top
@@ -58,7 +58,7 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              84 |           45 |
+| No           | No                    | No                     |              84 |           43 |
 | No           | No                    | Yes                    |               0 |            0 |
 | No           | Yes                   | No                     |              32 |            8 |
 | Yes          | No                    | No                     |               2 |            2 |
@@ -73,14 +73,14 @@ Table of Contents
 +----------------------------+------------------------------------+------------------------------------+------------------+----------------+--------------+
 |        Clock Signal        |            Enable Signal           |          Set/Reset Signal          | Slice Load Count | Bel Load Count | Bels / Slice |
 +----------------------------+------------------------------------+------------------------------------+------------------+----------------+--------------+
+|  clock/inner/inst/clk_out1 |                                    |                                    |                1 |              1 |         1.00 |
 |  wireSCLK_BUFG             | transmitter/regLRCK_i_1_n_0        |                                    |                1 |              1 |         1.00 |
 |  wireSCLK_BUFG             | transmitter/currState[0]           |                                    |                1 |              1 |         1.00 |
-|  clock/inner/inst/clk_out1 |                                    |                                    |                1 |              1 |         1.00 |
-|  CLK_100MHZ_IBUF_BUFG      | transformer/E[0]                   | clock/SR[0]                        |                5 |             19 |         3.80 |
-|  wireSCLK_BUFG             | transmitter/bitCounter[31]_i_2_n_0 | transmitter/bitCounter[31]_i_1_n_0 |                9 |             32 |         3.56 |
+|  CLK100MHZ_IBUF_BUFG       | bridgey/E[0]                       | clock/SR[0]                        |                5 |             19 |         3.80 |
 |  clock/inner/inst/clk_out1 |                                    | clock/counter[0]_i_1_n_0           |                8 |             32 |         4.00 |
-|  wireSCLK_BUFG             |                                    |                                    |                7 |             36 |         5.14 |
-|  CLK_100MHZ_IBUF_BUFG      |                                    |                                    |               37 |             47 |         1.27 |
+|  wireSCLK_BUFG             | transmitter/bitCounter[31]_i_2_n_0 | transmitter/bitCounter[31]_i_1_n_0 |                9 |             32 |         3.56 |
+|  wireSCLK_BUFG             |                                    |                                    |                8 |             36 |         4.50 |
+|  CLK100MHZ_IBUF_BUFG       |                                    |                                    |               34 |             47 |         1.38 |
 +----------------------------+------------------------------------+------------------------------------+------------------+----------------+--------------+
 
 
